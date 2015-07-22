@@ -29,7 +29,7 @@ public class MultiAgentVFPlanningAgent extends Agent {
 
 	
 	/**
-	 * The planner this agent will use to estiamte the value function and thereby determine its policy.
+	 * The planner this agent will use to estimate the value function and thereby determine its policy.
 	 */
 	protected MAValueFunctionPlanner		planner;
 	

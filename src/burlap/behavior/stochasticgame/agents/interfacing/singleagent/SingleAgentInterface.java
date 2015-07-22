@@ -20,9 +20,9 @@ import burlap.oomdp.stochasticgames.SingleAction;
  * For a number of reasons outside the scope of this class description, BURLAP single agent learning algorithms use a different interface for interacting
  * with the world than stochastic games agents do. Specifically, single agent learning algorithms make calls to actions that modify the world,
  * whereas in stochastic games, the world requests actions from the agent and then subsequently tells the agent about the results. This stochastic
- * games agent class provides an interface so that any BURALP single agent learning algorithm can be used in a stochastic games world. Specifically,
+ * games agent class provides an interface so that any BURLAP single agent learning algorithm can be used in a stochastic games world. Specifically,
  * this class works by running the single agent learning algorithm in a separate thread and synchronizing action selection and state outcomes
- * between the two paradigms. The only information that neeeds to be provided to this class is the stochastic games domain in which
+ * between the two paradigms. The only information that needs to be provided to this class is the stochastic games domain in which
  * this agent will play and a special single agent learning algorithm factory to produce the single agent learning algorithm that will be used.
  * @author James MacGlashan
  *

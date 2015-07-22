@@ -25,7 +25,7 @@ import burlap.oomdp.stochasticgames.SGDomain;
 /**
  * A class for performing multi-agent value iteration. This class extends the {@link MAValueFunctionPlanner} class to provide value iteration-like
  * value function estimation. When an input state is provided via the {@link #planFromState(State)} method, if the state has already been seen
- * and planned for, then nothing happens. If the state has never been seen before, then a state reachiability analysis is first performed in which
+ * and planned for, then nothing happens. If the state has never been seen before, then a state reachability analysis is first performed in which
  * all states possibly reachable from the input state are found. Then Value iteration proceeds for all states that have been found in the past.
  * The {@link #runVI()} method can also be called directly to force value iteration to be performed on all states that have been previously found,
  * but the state reachability must have been performed at least once before to seed the state space. State reachability can be performed manually
@@ -170,16 +170,19 @@ public class MAValueIteration extends MAValueFunctionPlanner {
 	
 	
 	/**
-	 * Runs Value Iteration over the set of states that have been discovered. VI terminates either when the max change in Q-value is less than the threshold stored
-	 * in this object's maxDelta parameter
-	 * or when the number of iterations exceeds  this object's maxIterations parameter.
+	 * Runs Value Iteration over the set of states that have been discovered. VI terminates either when the max change
+	 * in Q-value is less than the threshold stored in this object's maxDelta parameter or when the number of iterations
+	 * exceeds  this object's maxIterations parameter.
 	 * <p/>
-	 * If {@link #performStateReachabilityFrom(State)} has not yet been called, then the state set will be empty and a runtime exception will be thrown.
+	 * If {@link #performStateReachabilityFrom(State)} has not yet been called, then the state set will be empty and a
+	 * runtime exception will be thrown.
 	 */
 	public void runVI(){
 		
 		if(this.states.size() == 0){
-			throw new RuntimeException("No states to iterate over. Note that state reacability needs to be performed before runVI() can be called. Consider using planFromState(State s) method instead or using the performStateReachabilityFrom(State s) method first.");
+			throw new RuntimeException("No states to iterate over. Note that state reachability needs to be performed " +
+					"before runVI() can be called. Consider using planFromState(State s) method instead or using the " +
+					"performStateReachabilityFrom(State s) method first.");
 		}
 		
 		int i;
@@ -209,7 +212,8 @@ public class MAValueIteration extends MAValueFunctionPlanner {
 	/**
 	 * Finds and stores all states that are reachable from input state s.
 	 * @param s the state from which all reachable states will be indexed
-	 * @return true if input s was not previously indexed resulting in new states being found; false if s was already previously indexed resulting in no change in the discovered state set.
+	 * @return true if input s was not previously indexed resulting in new states being found; false if s was already
+	 * previously indexed resulting in no change in the discovered state set.
 	 */
 	public boolean performStateReachabilityFrom(State s){
 		

@@ -8,7 +8,8 @@ import burlap.oomdp.singleagent.GroundedAction;
 
 
 /**
- * Class that provides a wrapper for a List holding a bunch of state-action-reward-state ({@link SARS}) tuples. The dataset is backed by an {@link ArrayList}.
+ * Class that provides a wrapper for a List holding a bunch of state-action-reward-state ({@link SARS}) tuples. The
+ * dataset is backed by an {@link ArrayList}.
  * @author James MacGlashan
  *
  */
@@ -96,7 +97,7 @@ public class SARSData {
 	public static class SARS{
 		
 		/**
-		 * The previou state
+		 * The previous state
 		 */
 		public State			s;
 		

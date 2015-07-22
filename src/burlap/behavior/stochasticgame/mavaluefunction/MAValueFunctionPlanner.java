@@ -20,15 +20,17 @@ import burlap.oomdp.stochasticgames.SGDomain;
 
 
 /**
- * An abstract value function based planning algorithm base for sequential stochastic games that require the computation of Q-values for each agent for each joint action. Value function
- * updates are perfored using a Bellman-like backup operator; however, planning for different solution concepts is achieved by providing different backup operators via the
- * {@link SGBackupOperator} object.
+ * An abstract value function based planning algorithm base for sequential stochastic games that require the computation
+ * of Q-values for each agent for each joint action. Value function updates are performed using a Bellman-like backup
+ * operator; however, planning for different solution concepts is achieved by providing different backup operators via
+ * the {@link SGBackupOperator} object.
  * <p/>
- * Note that the agent definitions can only be changed up until planning begins. Once planning has begun, the agent definitions must remain fixed
- * for consistency of planning results. If the the client tries to change the agent definitions after planning has already begun, then a runtime exception will
- * be thrown.
+ * Note that the agent definitions can only be changed up until planning begins. Once planning has begun, the agent
+ * definitions must remain fixed for consistency of planning results. If the the client tries to change the agent
+ * definitions after planning has already begun, then a runtime exception will be thrown.
  * <p/>
- * Since value function planning algorithms compute multi-agent Q-values, this object implements the {@link MultiAgentQSourceProvider} interface. 
+ * Since value function planning algorithms compute multi-agent Q-values, this object implements the
+ * {@link MultiAgentQSourceProvider} interface.
  * 
  * @author James MacGlashan
  *
@@ -95,7 +97,7 @@ public abstract class MAValueFunctionPlanner implements MultiAgentQSourceProvide
 	
 	
 	/**
-	 * Initializes all the main datstructres of the value function planner
+	 * Initializes all the main data structures of the value function planner
 	 * @param domain the domain in which to perform planning
 	 * @param agentDefinitions the definitions of the agents involved in the planning problem.
 	 * @param jointActionModel the joint action model
@@ -125,7 +127,8 @@ public abstract class MAValueFunctionPlanner implements MultiAgentQSourceProvide
 	
 	
 	/**
-	 * Indicates whether planning has begun or not. Once planning has begun, the agent defintions cannot be changed or a runtime exception will be thrown.
+	 * Indicates whether planning has begun or not. Once planning has begun, the agent definitions cannot be changed or
+	 * a runtime exception will be thrown.
 	 * @return true is planning has started; false if it has not.
 	 */
 	public boolean hasStartedPlanning(){
@@ -134,8 +137,9 @@ public abstract class MAValueFunctionPlanner implements MultiAgentQSourceProvide
 	
 	
 	/**
-	 * Sets/changes the agent definitions to use in planning. This can only be change up until planning begins, after which a runtime exception will
-	 * be thrown. To check if the planning has already begun, use the {@link #hasStartedPlanning()} method.
+	 * Sets/changes the agent definitions to use in planning. This can only be change up until planning begins, after
+     * which a runtime exception will be thrown. To check if the planning has already begun, use the
+     * {@link #hasStartedPlanning()} method.
 	 * @param agentDefinitions the definitions of agents involve in the planning problem.
 	 */
 	public void setAgentDefinitions(Map<String, AgentType> agentDefinitions){
@@ -204,7 +208,7 @@ public abstract class MAValueFunctionPlanner implements MultiAgentQSourceProvide
 	/**
 	 * A class for holding all of the transition dynamic information for a given joint action in a given state. This includes
 	 * state transitions as well as joint rewards. Information is stored as a triple consisting of the {@link JointAction},
-	 * the list of state transtitions ({@link TransitionProbability} objects), and a list of joint rewards (A map from agent names
+	 * the list of state transitions ({@link TransitionProbability} objects), and a list of joint rewards (A map from agent names
 	 * to rewards received).
 	 * @author James MacGlashan
 	 *
@@ -216,7 +220,7 @@ public abstract class MAValueFunctionPlanner implements MultiAgentQSourceProvide
 		
 		
 		/**
-		 * Generates the transition information for the given state and joint aciton
+		 * Generates the transition information for the given state and joint action
 		 * @param s the state in which the joint action is applied
 		 * @param ja the joint action applied to the given state
 		 */
@@ -234,8 +238,8 @@ public abstract class MAValueFunctionPlanner implements MultiAgentQSourceProvide
 	
 	
 	/**
-	 * A {@link QSourceForSingleAgent} implementation which stores a value function for an agent and produces Joint action Q-values
-	 * by marginalizing over the transition dynamics the reward and discounted next state value.
+	 * A {@link QSourceForSingleAgent} implementation which stores a value function for an agent and produces Joint
+     * action Q-values by marginalizing over the transition dynamics the reward and discounted next state value.
 	 * @author James MacGlashan
 	 *
 	 */
@@ -262,9 +266,6 @@ public abstract class MAValueFunctionPlanner implements MultiAgentQSourceProvide
 		
 		@Override
 		public JAQValue getQValueFor(State s, JointAction ja) {
-			
-			
-			
 			JointActionTransitions jat = new JointActionTransitions(s, ja);
 			double sumQ = 0.;
 			
