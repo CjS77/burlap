@@ -70,7 +70,7 @@ public class ConcatenatedObjectFeatureVectorGenerator implements
 		for (String oclassName : this.objectClassOrder) {
 			List<ObjectInstance> obs = s.getObjectsOfClass(oclassName);
 			if(obs.size() > 0){
-				d += obs.get(0).getObjectClass().numObservableAttributes();
+				d += obs.get(0).getObjectClass().numObservableAttributes() * obs.size();
 				objectsToAdd.addAll(obs);
 			}
 		}

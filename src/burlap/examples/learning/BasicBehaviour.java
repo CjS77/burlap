@@ -61,7 +61,7 @@ public class BasicBehaviour {
         //Utility function that set the map of the world to the classic Four Rooms map (Sutton, R.S. et al, 1999).
         gwdg.setMapToFourRooms();
         domain = gwdg.generateDomain();
-        //StateParsers handle translation of states to text/other prepresentations and back
+        //StateParsers handle translation of states to text/other presentations and back
         sp = new GridWorldStateParser(domain);
         //An example of a pre-packaged reward function that returns -1 for all S-A-S transactions. You can of course, roll your own
         rf = new UniformCostRF();
@@ -73,7 +73,8 @@ public class BasicBehaviour {
         initialState = GridWorldDomain.getOneAgentOneLocationState(domain);
         GridWorldDomain.setAgent(initialState, 0, 0);
         GridWorldDomain.setLocation(initialState, 0, 10, 10);
-        //This is cool. A hashing factory will automatically create a hash for each new state to provide efficient lookups on subsequent updates to the state
+        //This is cool. A hashing factory will automatically create a hash for each new state to provide efficient
+        // lookups on subsequent updates to the state
         //GridWorld is discrete. so use a discrete hashing function
         hashingFactory = new DiscreteStateHashFactory();
         /* This line is optional. If we did not include it, state hash codes would be computed with respect to all
@@ -178,7 +179,7 @@ public class BasicBehaviour {
         if(!outputPath.endsWith("/")){
             outputPath = outputPath + "/";
         }
-        /* This constructor will by default set Q-learning to use a 0.1 epsilon greedy policy
+        /* This constructor will by default set Q-learning to use a 0.1 ε-greedy policy
          */
         QLearning agent = new QLearning(domain, rf, tf, 0.99, hashingFactory, 0.0, 0.9);
 //        for (int i =0; i<100; i++) {
