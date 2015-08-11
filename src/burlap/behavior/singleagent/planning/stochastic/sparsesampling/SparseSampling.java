@@ -154,7 +154,7 @@ public class SparseSampling extends OOMDPPlanner implements QComputablePlanner{
 	/**
 	 * Sets the height and number of transition dynamics samples in a way that ensure epsilon optimality.
 	 * @param rmax the maximum reward value of the MDP
-	 * @param epsilon the epsilon optimality (amount that the estimated value function may diverge from the true optimal)
+	 * @param epsilon the epsilon optimality (amount that the estimated value funciton may diverge from the true optimal)
 	 * @param numActions the maximum number of actions that could be applied from a state
 	 */
 	public void setHAndCByMDPError(double rmax, double epsilon, int numActions){
@@ -186,7 +186,12 @@ public class SparseSampling extends OOMDPPlanner implements QComputablePlanner{
 	 */
 	public void setC(int c){
 		this.c = c;
-        this.computeExactValueFunction = this.c < 0;
+		if(this.c < 0){
+			this.computeExactValueFunction = true;
+		}
+		else{
+			this.computeExactValueFunction = false;
+		}
 	}
 	
 	/**
@@ -299,14 +304,14 @@ public class SparseSampling extends OOMDPPlanner implements QComputablePlanner{
 		if(this.rootLevelQValues.containsKey(sh)){
 			return; //already planned for this state
 		}
+		
 		DPrint.cl(this.debugCode, "Beginning Planning.");
-		long startTime = System.currentTimeMillis();
 		int oldUpdates = this.numUpdates;
+		
 		StateNode sn = this.getStateNode(initialState, this.h);
 		rootLevelQValues.put(sh, sn.estimateQs());
-		long endTime = System.currentTimeMillis();
-		DPrint.cf(this.debugCode, "Finished Planning with %d value estimates; for a cumulative total of %d (%4.3f s)\n",
-				this.numUpdates - oldUpdates, this.numUpdates, 0.001*(endTime - startTime));
+		
+		DPrint.cl(this.debugCode, "Finished Planning with " + (this.numUpdates - oldUpdates) + " value esitmates; for a cumulative total of: " + this.numUpdates);
 		
 		if(this.forgetPreviousPlanResults){
 			this.nodesByHeight.clear();

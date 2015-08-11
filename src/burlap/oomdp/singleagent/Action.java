@@ -162,7 +162,7 @@ public abstract class Action {
 	
 	/**
 	 * Returns true if all parameters (if any) for this action represent OO-MDP objects in a state; false otherwise.
-	 * The default behavior is to return True; but this can be overridden for special actions.
+	 * The default behavior is to return True; but this can be overriden for special actions.
 	 * @return true if all parameters (if any) for this action represent OO-MDP objects in a state; false otherwise.
 	 */
 	public boolean parametersAreObjects(){
@@ -178,7 +178,7 @@ public abstract class Action {
 	}
 	
 	/**
-	 * Sets an action observer for this action. Set to null to specify no observer or to disable observation.
+	 * Sets an action observer for this action. Set to null to specify no observer or to disable observaiton.
 	 * @param observer the observer that will be told of each event when this action is executed.
 	 */
 	public void addActionObserver(ActionObserver observer){
@@ -197,7 +197,7 @@ public abstract class Action {
 	/**
 	 * Returns true if this action can be applied in this specified state with the specified parameters.
 	 * Default behavior is that an action can be applied in any state, but the {@link #applicableInState(State, String [])}
-	 * method will need to be overridden if this is not the case.
+	 * method will need to be override if this is not the case.
 	 * @param s the state in which to check if this action can be applied
 	 * @param params a comma delineated String specifying the action object parameters
 	 * @return true if this action can be applied in this specified state with the specified parameters; false otherwise.
@@ -235,7 +235,7 @@ public abstract class Action {
 	
 	/**
 	 * Performs this action in the specified state using the specified parameters and returns the resulting state. The input state
-	 * will not be modified with a deep copied state returned instead (unless this method is overridden, which may result in a semi-deep copy).
+	 * will not be modified with a deep copied state returned instead (unless this method is overriden, which may result in a semi-deep copy).
 	 * If the action is not applicable in state s with parameters params, then a copy of the input state is returned.
 	 * In general Action subclasses should *NOT* override this method and should instead override the abstract {@link #performActionHelper(State, String[])} method.
 	 * Only override this method if you are seeking to perform memory optimization with semi-shallow copies of states and know what you're doing.
@@ -293,7 +293,7 @@ public abstract class Action {
 	 * Transition probabilities are specified as list of {@link burlap.oomdp.core.TransitionProbability} objects. The list
 	 * is only required to contain transitions with non-zero probability. Since not all planning algorithms require
 	 * the full transition dynamics (and since it's impossible to enumerate them in some infinite state space domains),
-	 * this method is not requeried to be implemented. However, it will throw an UnsupportedOperationException
+	 * this method is not requried to be implemented. However, it will throw an UnsupportedOperationException
 	 * if it is not overriden by the Action subclass if it is called by an algorithm that requires it.
 	 * @param s the state from which the transition probabilities when applying this action will be returned.
 	 * @param params a String array specifying the action object parameters
