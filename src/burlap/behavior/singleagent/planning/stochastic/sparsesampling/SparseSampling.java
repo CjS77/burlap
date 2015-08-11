@@ -450,7 +450,7 @@ public class SparseSampling extends OOMDPPlanner implements QComputablePlanner{
 			List<QValue> qs = new ArrayList<QValue>(gas.size());
 			for(GroundedAction ga : gas){
 				if(this.height <= 0){
-					qs.add(new QValue(this.sh.s, ga, SparseSampling.this.vinit.value(this.sh.s)));
+					qs.add(new QValue(this.sh.s, ga, SparseSampling.this.vinit.qValue(this.sh.s, ga)));
 				}
 				else{
 					double q;
